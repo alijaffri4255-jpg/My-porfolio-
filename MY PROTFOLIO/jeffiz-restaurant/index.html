@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jeffiz — Luxury & Affordable Dining | FIFA World Cup Special</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ====== LOADING OVERLAY ====== -->
+  <div id="loading-overlay">
+    <div class="football-spinner">
+      <div class="ball"></div>
+    </div>
+    <p>Kicking off your experience...</p>
+  </div>
+
+  <!-- ====== NAVIGATION ====== -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <span class="logo-text">Jeffiz</span>
+        <span class="logo-tagline">Dine & Celebrate</span>
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#reserve">Reserve</a></li>
+        <li><a href="#quiz">Quiz</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ====== HOME / HERO ====== -->
+  <section id="home" class="hero fade-in">
+    <div class="hero-overlay"></div>
+    <!-- Floating football particles -->
+    <div class="particles" id="particles"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="fifa-icon">🏆</span>
+        <span>World Cup Special — Discounts on All Meals!</span>
+      </div>
+      <h1>Welcome to <span class="highlight">Jeffiz</span></h1>
+      <p class="hero-sub">
+        Where <strong>Luxury Dining</strong> Meets <strong>Affordable Comfort</strong>
+      </p>
+      <p class="hero-desc">
+        1000+ Meals Available <span class="ai-badge">AI-Visualized</span>
+      </p>
+      <div class="hero-buttons">
+        <a href="#menu" class="btn btn-primary">Explore Menu</a>
+        <a href="#reserve" class="btn btn-secondary">Book a Table</a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator">
+      <span>Scroll Down</span>
+      <div class="mouse"><div class="wheel"></div></div>
+    </div>
+  </section>
+
+  <!-- ====== MENU SECTION ====== -->
+  <section id="menu" class="section">
+    <div class="container">
+      <div class="section-header slide-up">
+        <span class="section-subtitle">Our Collection</span>
+        <h2>1000+ Meals <span class="highlight">Curated for You</span></h2>
+        <p>Swipe through our luxury & affordable categories</p>
+      </div>
+
+      <!-- Category Tabs -->
+      <div class="menu-tabs slide-up">
+        <button class="tab-btn active" data-category="luxury">🍽️ Luxury Meals</button>
+        <button class="tab-btn" data-category="affordable">🍔 Affordable Meals</button>
+      </div>
+
+      <!-- Luxury Meals -->
+      <div class="menu-grid" id="luxury-grid">
+        <!-- Items injected by JS -->
+      </div>
+
+      <!-- Affordable Meals -->
+      <div class="menu-grid hidden" id="affordable-grid">
+        <!-- Items injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== RESERVE TABLE SECTION ====== -->
+  <section id="reserve" class="section reserve-section">
+    <div class="container">
+      <div class="section-header slide-up">
+        <span class="section-subtitle">Book Your Experience</span>
+        <h2>Reserve a <span class="highlight">Table</span></h2>
+      </div>
+
+      <div class="reserve-options slide-up">
+        <div class="reserve-card" id="group-booking">
+          <div class="reserve-icon">👨‍👩‍👧‍👦</div>
+          <h3>Group & Family Dining</h3>
+          <p>Perfect for gatherings, celebrations, and FIFA watch parties</p>
+          <button class="btn btn-primary" onclick="openBooking('group')">Book Now</button>
+        </div>
+        <div class="reserve-card romantic-card" id="romantic-booking">
+          <div class="reserve-icon romantic-glow">💕</div>
+          <h3>Romantic Couples</h3>
+          <p class="romantic-text">Lovely & Romantic — Candlelight dining experience</p>
+          <div class="candle-visual">
+            <span class="candle">🕯️</span>
+            <span class="candle">🕯️</span>
+            <span class="candle">🕯️</span>
+          </div>
+          <button class="btn btn-secondary" onclick="openBooking('romantic')">Book Romantic</button>
+        </div>
+      </div>
+
+      <!-- Booking Modal -->
+      <div id="booking-modal" class="modal">
+        <div class="modal-content slide-up">
+          <span class="close-modal" onclick="closeBooking()">&times;</span>
+          <h3 id="booking-title">Book a Table</h3>
+          <form id="booking-form">
+            <input type="hidden" id="booking-type" />
+            <div class="form-group">
+              <label for="b-name">Your Name</label>
+              <input type="text" id="b-name" placeholder="Enter your name" required />
+            </div>
+            <div class="form-group">
+              <label for="b-email">Email</label>
+              <input type="email" id="b-email" placeholder="your@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="b-date">Date</label>
+              <input type="date" id="b-date" required />
+            </div>
+            <div class="form-group">
+              <label for="b-time">Time</label>
+              <input type="time" id="b-time" required />
+            </div>
+            <div class="form-group">
+              <label for="b-guests">Guests</label>
+              <input type="number" id="b-guests" min="1" max="20" value="2" required />
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">Confirm Booking</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Confirmation Modal -->
+      <div id="confirm-modal" class="modal">
+        <div class="modal-content confirm-content slide-up">
+          <div class="confirm-icon">✅</div>
+          <h3>Booking Confirmed!</h3>
+          <p id="confirm-message">Your table has been reserved.</p>
+          <p class="confirm-detail">We look forward to serving you at Jeffiz!</p>
+          <button class="btn btn-primary" onclick="closeConfirm()">Awesome!</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== QUIZ SECTION ====== -->
+  <section id="quiz" class="section quiz-section">
+    <div class="container">
+      <div class="section-header slide-up">
+        <span class="section-subtitle">Find Your Flavor</span>
+        <h2>Which Meal <span class="highlight">Matches You?</span></h2>
+        <p>Take our FIFA-inspired quiz!</p>
+      </div>
+
+      <div class="quiz-container slide-up" id="quiz-container">
+        <!-- Question 1 -->
+        <div class="quiz-question active" data-q="1">
+          <div class="quiz-progress">
+            <div class="progress-bar" style="width: 25%"></div>
+          </div>
+          <p class="quiz-q-text">⚽ Which player's energy matches your appetite?</p>
+          <div class="quiz-options">
+            <button class="quiz-opt" data-value="luxury">Cristiano Ronaldo — The Champion</button>
+            <button class="quiz-opt" data-value="affordable">Lionel Messi — The People's Star</button>
+            <button class="quiz-opt" data-value="luxury">Kylian Mbappé — Fast & Fierce</button>
+            <button class="quiz-opt" data-value="affordable">Neymar Jr. — Fun & Fancy</button>
+          </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="quiz-question" data-q="2">
+          <div class="quiz-progress">
+            <div class="progress-bar" style="width: 50%"></div>
+          </div>
+          <p class="quiz-q-text">🏟️ Pick your ideal match-day vibe:</p>
+          <div class="quiz-options">
+            <button class="quiz-opt" data-value="luxury">VIP Box — Champagne & Caviar</button>
+            <button class="quiz-opt" data-value="affordable">Stadium Stands — Cheering with the Crowd</button>
+            <button class="quiz-opt" data-value="luxury">Private Suite — Exclusive Viewing</button>
+            <button class="quiz-opt" data-value="affordable">Fan Zone — High Energy & Fun</button>
+          </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="quiz-question" data-q="3">
+          <div class="quiz-progress">
+            <div class="progress-bar" style="width: 75%"></div>
+          </div>
+          <p class="quiz-q-text">🌍 Which country's cuisine calls to you?</p>
+          <div class="quiz-options">
+            <button class="quiz-opt" data-value="luxury">France — Elegant & Refined</button>
+            <button class="quiz-opt" data-value="affordable">Italy — Hearty & Loved</button>
+            <button class="quiz-opt" data-value="luxury">Japan — Exquisite & Artful</button>
+            <button class="quiz-opt" data-value="affordable">Mexico — Bold & Flavorful</button>
+          </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="quiz-question" data-q="4">
+          <div class="quiz-progress">
+            <div class="progress-bar" style="width: 100%"></div>
+          </div>
+          <p class="quiz-q-text">🎉 What's your celebration style?</p>
+          <div class="quiz-options">
+            <button class="quiz-opt" data-value="luxury">Champagne Toast — Classy Celebration</button>
+            <button class="quiz-opt" data-value="affordable">High-Five & Hug — Joyful Moments</button>
+            <button class="quiz-opt" data-value="luxury">Caviar & Gold — Splurge Worthy</button>
+            <button class="quiz-opt" data-value="affordable">Pizza & Friends — Good Times</button>
+          </div>
+        </div>
+
+        <!-- Quiz Result -->
+        <div id="quiz-result" class="hidden">
+          <div class="result-icon">🎯</div>
+          <h3>Your Perfect Meal Type: <span id="result-type"></span></h3>
+          <p id="result-desc"></p>
+          <button class="btn btn-primary" onclick="resetQuiz()">Retake Quiz</button>
+          <a href="#menu" class="btn btn-secondary">View Menu</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== REVIEWS SECTION ====== -->
+  <section id="reviews" class="section reviews-section">
+    <div class="container">
+      <div class="section-header slide-up">
+        <span class="section-subtitle">Testimonials</span>
+        <h2>What Our <span class="highlight">Guests Say</span></h2>
+      </div>
+
+      <div class="reviews-slider slide-up" id="reviews-slider">
+        <!-- Injected by JS -->
+      </div>
+
+      <div class="slider-controls">
+        <button class="slider-btn" onclick="prevReview()">◀</button>
+        <div class="slider-dots" id="slider-dots"></div>
+        <button class="slider-btn" onclick="nextReview()">▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== ABOUT US SECTION ====== -->
+  <section id="about" class="section about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content slide-up">
+          <span class="section-subtitle">Our Story</span>
+          <h2>Founded with <span class="highlight">Passion</span></h2>
+          <p>
+            <strong>Jeffiz</strong> brings together <em>luxury dining</em> and 
+            <em>affordable comfort</em>. With over <strong>1000 meals</strong> 
+            crafted using <strong>AI visuals</strong>, we ensure every dish is 
+            recognizable, delightful, and unforgettable.
+          </p>
+          <p>
+            This season, we celebrate <strong>football</strong> with global 
+            flavors and unbeatable discounts. Whether you're here for a 
+            <strong>golden truffle steak</strong> or a <strong>classic burger</strong>, 
+            Jeffiz makes every bite a celebration.
+          </p>
+          <div class="about-stats">
+            <div class="stat">
+              <span class="stat-num">1000+</span>
+              <span class="stat-label">Meals</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">50+</span>
+              <span class="stat-label">Global Flavors</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">🏆</span>
+              <span class="stat-label">World Cup Vibes</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-visual slide-up">
+          <div class="about-icon-grid">
+            <span>🍽️</span><span>⚽</span><span>✨</span>
+            <span>🍷</span><span>🌍</span><span>💎</span>
+            <span>🥩</span><span>🎉</span><span>🌟</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Jeffiz</h3>
+          <p>Luxury & Affordable Dining with FIFA World Cup Spirit</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#reserve">Reserve</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <p>📍 123 Jeffiz Avenue, Food City</p>
+          <p>📞 +1 (555) 123-4567</p>
+          <p>✉️ hello@jeffiz.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Jeffiz. All rights reserved. Made with ❤️ for food & football.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====== SCRIPTS ====== -->
+  <script src="script.js"></script>
+</body>
+</html>
